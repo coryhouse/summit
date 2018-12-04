@@ -7,7 +7,7 @@ class Nav extends React.Component {
   render() {
     return (
       <div style={{ float: "left", width: 150 }}>
-        <ul>
+        <ul style={{ listStyleType: "none", margin: 0, padding: 0 }}>
           <li>
             <Link to="/">Home</Link>
           </li>

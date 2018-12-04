@@ -5,13 +5,14 @@ import Home from "./Home";
 import Inputs from "./Inputs";
 import { Route, Switch } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
+import "./App.css";
 
 class App extends React.Component {
   // Create a Header component with a blue background that says "Summit"
   // Display above the Nav.
   render() {
     return (
-      <>
+      <div className="App">
         <Header />
         <Nav />
         <div style={{ float: "left", width: 400 }}>
@@ -21,7 +22,7 @@ class App extends React.Component {
             <Route path="*" component={PageNotFound} />
           </Switch>
         </div>
-      </>
+      </div>
     );
   }
 }
