@@ -3,8 +3,12 @@ import Nav from "./Nav";
 import Header from "./Header";
 import Home from "./Home";
 import ModelInputs from "./ModelInputs";
+import ModelOutputs from "./ModelOutputs";
 import { Route, Switch } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
+import { save } from "./api/modelInputsApi";
+import { withRouter } from "react-router-dom";
+import { getAll, deleteInput } from "./api/modelInputsApi";
 import "./App.css";
 
 class App extends React.Component {
@@ -12,11 +16,26 @@ class App extends React.Component {
     modelInputs: []
   };
 
+  componentDidMount() {
+    getAll().then(modelInputs => {
+      this.setState({ modelInputs });
+    });
+  }
+
+  handleDelete = id => {
+    deleteInput(id);
+    this.setState(state => {
+      return { modelInputs: [...state.modelInputs.filter(i => i.id !== id)] };
+    });
+  };
+
   handleSaveModelInput = modelInput => {
-    debugger;
     // Since setting state based on previous state, using callback form
     this.setState(state => {
       const modelInputs = [...state.modelInputs, modelInput];
+      save(modelInput).then(response => {
+        this.props.history.push("/model-outputs");
+      });
       return { modelInputs };
     });
   };
@@ -37,6 +56,15 @@ class App extends React.Component {
                 <ModelInputs onSave={this.handleSaveModelInput} />
               )}
             />
+            <Route
+              path="/model-outputs"
+              render={props => (
+                <ModelOutputs
+                  modelInputs={this.state.modelInputs}
+                  onDelete={this.handleDelete}
+                />
+              )}
+            />
             <Route path="*" component={PageNotFound} />
           </Switch>
         </div>
@@ -45,4 +73,4 @@ class App extends React.Component {
   }
 }
 
-export default App;
+export default withRouter(App);

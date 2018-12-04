@@ -15,7 +15,7 @@ class Nav extends React.Component {
             <Link to="/model-inputs">Model Inputs</Link>
           </li>
           <li>
-            <Link to="/outputs">Outputs</Link>
+            <Link to="/model-outputs">Outputs</Link>
           </li>
           <li>
             <Link to="/viz">Viz</Link>
