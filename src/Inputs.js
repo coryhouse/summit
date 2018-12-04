@@ -1,4 +1,5 @@
 import React, { Component } from "react";
+import TextInput from "./TextInput";
 
 class Inputs extends Component {
   //   constructor(props) {
@@ -15,7 +16,8 @@ class Inputs extends Component {
   state = {
     name: "",
     description: "",
-    date: ""
+    date: "",
+    errors: {}
   };
 
   // Class field with arrow function
@@ -23,21 +25,39 @@ class Inputs extends Component {
     this.setState({ [event.target.name]: event.target.value });
   };
 
+  handleSave = event => {
+    event.preventDefault();
+
+    const errors = {};
+
+    // validate submitted data
+    if (this.state.name === "") {
+      errors.name = "Hey, enter a name. 😀";
+    }
+
+    if (this.state.description === "") {
+      errors.description = "Hey, enter a description. 😜";
+    }
+
+    if (this.state.date === "") {
+      errors.date = "Hey, enter a date. 📆";
+    }
+
+    this.setState({ errors: errors });
+  };
+
   render() {
     return (
-      <form>
+      <form onSubmit={this.handleSave}>
         <h2>Inputs</h2>
-        <p>
-          <label htmlFor="name">Name</label>
-          <br />
-          <input
-            type="text"
-            id="name"
-            name="name"
-            value={this.state.name}
-            onChange={this.handleChange}
-          />
-        </p>
+
+        <TextInput
+          name="name"
+          label="Name"
+          value={this.state.name}
+          onChange={this.handleChange}
+          error={this.state.errors.name}
+        />
         <p>
           <label htmlFor="description">Description</label>
           <br />
@@ -47,18 +67,18 @@ class Inputs extends Component {
             onChange={this.handleChange}
             name="description"
           />
+          {this.state.errors.description && (
+            <div style={{ color: "red" }}>{this.state.errors.description}</div>
+          )}
         </p>
-        <p>
-          <label htmlFor="date">Date</label>
-          <br />
-          <input
-            type="text"
-            id="date"
-            value={this.state.date}
-            name="date"
-            onChange={this.handleChange}
-          />
-        </p>
+
+        <TextInput
+          name="date"
+          value={this.state.date}
+          label="Date"
+          onChange={this.handleChange}
+          error={this.state.errors.date}
+        />
         <button type="submit">Save</button>
       </form>
     );
