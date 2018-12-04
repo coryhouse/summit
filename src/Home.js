@@ -5,6 +5,11 @@ class Home extends Component {
     return (
       <div>
         <h2>Welcome Home</h2>
+        <img
+          src="/logo.png"
+          alt="Summit Logo"
+          style={{ width: 50, height: 50 }}
+        />
       </div>
     );
   }
