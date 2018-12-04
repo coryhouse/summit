@@ -12,7 +12,7 @@ class Nav extends React.Component {
             <Link to="/">Home</Link>
           </li>
           <li>
-            <Link to="/inputs">Inputs</Link>
+            <Link to="/model-inputs">Model Inputs</Link>
           </li>
           <li>
             <Link to="/outputs">Outputs</Link>

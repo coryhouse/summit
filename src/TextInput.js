@@ -1,12 +1,27 @@
 import React, { Component } from "react";
+import PropTypes from "prop-types";
 
 class TextInput extends Component {
+  // Using experimental static property
+  static propTypes = {
+    name: PropTypes.string.isRequired,
+    displayLabel: PropTypes.bool,
+    label: PropTypes.string.isRequired,
+    value: PropTypes.string.isRequired,
+    error: PropTypes.string,
+    onChange: PropTypes.func.isRequired
+  };
+
+  static defaultProps = {
+    displayLabel: true
+  };
+
   render() {
     // Destructuring to shorten calls below.
-    const { name, label, value, onChange, error } = this.props;
+    const { name, label, value, onChange, error, displayLabel } = this.props;
     return (
-      <p>
-        <label htmlFor={name}>{label}</label>
+      <div>
+        {displayLabel && <label htmlFor={name}>{label}</label>}
         <br />
         <input
           type="text"
@@ -16,9 +31,24 @@ class TextInput extends Component {
           onChange={onChange}
         />
         {error && <div style={{ color: "red" }}>{error}</div>}
-      </p>
+      </div>
     );
   }
 }
+
+// The original style
+
+// TextInput.propTypes = {
+//   name: PropTypes.string.isRequired,
+//   displayLabel: PropTypes.bool,
+//   label: PropTypes.string.isRequired,
+//   value: PropTypes.string.isRequired,
+//   error: PropTypes.string,
+//   onChange: PropTypes.func.isRequired
+// };
+
+// TextInput.defaultProps = {
+//   displayLabel: true
+// };
 
 export default TextInput;

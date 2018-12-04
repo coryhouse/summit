@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import TextInput from "./TextInput";
 
-class Inputs extends Component {
+class ModelInputs extends Component {
   //   constructor(props) {
   //     super(props);
 
@@ -43,13 +43,23 @@ class Inputs extends Component {
       errors.date = "Hey, enter a date. 📆";
     }
 
-    this.setState({ errors: errors });
+    const errorsExist = Object.keys(errors).length > 0;
+
+    if (errorsExist) {
+      return this.setState({ errors: errors });
+    }
+
+    this.props.onSave({
+      name: this.state.name,
+      description: this.state.description,
+      date: this.state.date
+    });
   };
 
   render() {
     return (
       <form onSubmit={this.handleSave}>
-        <h2>Inputs</h2>
+        <h2>Model Inputs</h2>
 
         <TextInput
           name="name"
@@ -58,7 +68,8 @@ class Inputs extends Component {
           onChange={this.handleChange}
           error={this.state.errors.name}
         />
-        <p>
+
+        <div>
           <label htmlFor="description">Description</label>
           <br />
           <textarea
@@ -70,7 +81,7 @@ class Inputs extends Component {
           {this.state.errors.description && (
             <div style={{ color: "red" }}>{this.state.errors.description}</div>
           )}
-        </p>
+        </div>
 
         <TextInput
           name="date"
@@ -85,4 +96,4 @@ class Inputs extends Component {
   }
 }
 
-export default Inputs;
+export default ModelInputs;

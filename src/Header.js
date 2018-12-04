@@ -1,13 +1,16 @@
-import React, { Component } from "react";
+import React from "react";
+import PropTypes from "prop-types";
 
-class Header extends Component {
-  render() {
-    return (
-      <div style={{ color: "white", backgroundColor: "#52B6E8" }}>
-        <h1>Summit</h1>
-      </div>
-    );
-  }
-}
+const Header = ({ companyName = "Summit" }) => {
+  return (
+    <div style={{ color: "white", backgroundColor: "#52B6E8" }}>
+      <h1>{companyName}</h1>
+    </div>
+  );
+};
+
+Header.propTypes = {
+  companyName: PropTypes.string
+};
 
 export default Header;
