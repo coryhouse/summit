@@ -14,11 +14,13 @@ class App extends React.Component {
       <>
         <Header />
         <Nav />
-        <Switch>
-          <Route path="/" exact component={Home} />
-          <Route path="/inputs" component={Inputs} />
-          <Route path="*" component={PageNotFound} />
-        </Switch>
+        <div style={{ float: "left", width: 400 }}>
+          <Switch>
+            <Route path="/" exact component={Home} />
+            <Route path="/inputs" component={Inputs} />
+            <Route path="*" component={PageNotFound} />
+          </Switch>
+        </div>
       </>
     );
   }

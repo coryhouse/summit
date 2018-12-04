@@ -6,20 +6,22 @@ import { Link } from "react-router-dom";
 class Nav extends React.Component {
   render() {
     return (
-      <ul>
-        <li>
-          <Link to="/">Home</Link>
-        </li>
-        <li>
-          <Link to="/inputs">Inputs</Link>
-        </li>
-        <li>
-          <Link to="/outputs">Outputs</Link>
-        </li>
-        <li>
-          <Link to="/viz">Viz</Link>
-        </li>
-      </ul>
+      <div style={{ float: "left", width: 150 }}>
+        <ul>
+          <li>
+            <Link to="/">Home</Link>
+          </li>
+          <li>
+            <Link to="/inputs">Inputs</Link>
+          </li>
+          <li>
+            <Link to="/outputs">Outputs</Link>
+          </li>
+          <li>
+            <Link to="/viz">Viz</Link>
+          </li>
+        </ul>
+      </div>
     );
   }
 }
