@@ -6,7 +6,6 @@ export function getAll() {
 
 export function deleteInput(id) {
   getAll().then(allInputs => {
-    debugger;
     const inputsWithoutThatDeletedOne = allInputs.filter(i => i.id !== id);
     window.localStorage.setItem(
       "modelInputs",
@@ -25,7 +24,6 @@ export function save(modelInput) {
       JSON.stringify([...modelInputs, savedModelInput])
     );
     // Pretend this came back from the server in a real app
-    debugger;
     return new Promise((resolve, reject) => resolve(savedModelInput));
   });
 }
