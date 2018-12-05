@@ -1,12 +1,15 @@
 import React from "react";
 import ReactDOM from "react-dom";
-import App from "./App";
+import App from "./App.Hooks";
 import { BrowserRouter as Router } from "react-router-dom";
 import "./index.css";
+import ErrorBoundary from "./ErrorBoundary";
 
 ReactDOM.render(
-  <Router>
-    <App />
-  </Router>,
+  <ErrorBoundary>
+    <Router>
+      <App />
+    </Router>
+  </ErrorBoundary>,
   document.getElementById("root")
 );
