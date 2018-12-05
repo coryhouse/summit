@@ -6,7 +6,7 @@ import ModelInputs from "./ModelInputs";
 import ModelOutputs from "./ModelOutputs";
 import { Route, Switch } from "react-router-dom";
 import PageNotFound from "./PageNotFound";
-import { save } from "./api/modelInputsApi";
+import { save, saveAll } from "./api/modelInputsApi";
 import { withRouter } from "react-router-dom";
 import { getAll, deleteInput } from "./api/modelInputsApi";
 import "./App.css";
@@ -31,10 +31,16 @@ function App(props) {
     setModelInputs([...modelInputs.filter(i => i.id !== id)]);
   }
 
-  async function handleSaveModelInput(modelInput) {
+  async function handleAddModelInput(modelInput) {
     const savedModelInput = await save(modelInput);
     setModelInputs([...modelInputs, savedModelInput]);
     props.history.push("/model-outputs");
+  }
+
+  async function handleUpdateAllModelInputs(modelInputs) {
+    const savedInputs = await saveAll(modelInputs);
+    setModelInputs([...savedInputs]);
+    alert("Saved. 😳");
   }
 
   // Create a Header component with a blue background that says "Summit"
@@ -48,12 +54,16 @@ function App(props) {
           <Route path="/" exact component={Home} />
           <Route
             path="/model-inputs"
-            render={props => <ModelInputs onSave={handleSaveModelInput} />}
+            render={props => <ModelInputs onSave={handleAddModelInput} />}
           />
           <Route
             path="/model-outputs"
             render={props => (
-              <ModelOutputs modelInputs={modelInputs} onDelete={handleDelete} />
+              <ModelOutputs
+                modelInputs={modelInputs}
+                onDelete={handleDelete}
+                onUpdateAll={handleUpdateAllModelInputs}
+              />
             )}
           />
           <Route path="*" component={PageNotFound} />

@@ -28,6 +28,11 @@ export function save(modelInput) {
   });
 }
 
+export function saveAll(modelInputs) {
+  window.localStorage.setItem("modelInputs", JSON.stringify([...modelInputs]));
+  return new Promise((resolve, reject) => resolve(modelInputs));
+}
+
 function guid() {
   function s4() {
     return Math.floor((1 + Math.random()) * 0x10000)
