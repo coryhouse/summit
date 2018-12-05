@@ -1,13 +1,17 @@
-import React, { useState, useEffect } from "react";
+import React, { useState, useEffect, useContext } from "react";
+import ModelInputsContext from "./ModelInputsContext";
 
 const ModelOutputs = props => {
-  const [modelInputs, setModelInputs] = useState(props.modelInputs);
+  const modelInputsContext = useContext(ModelInputsContext);
+  const [modelInputs, setModelInputs] = useState(
+    modelInputsContext.modelInputs
+  );
 
   useEffect(
     () => {
-      setModelInputs(props.modelInputs);
+      setModelInputs(modelInputsContext.modelInputs);
     },
-    [props.modelInputs]
+    [modelInputsContext.modelInputs]
   );
 
   function handleChange(id, event) {
@@ -21,7 +25,7 @@ const ModelOutputs = props => {
 
   return (
     <form onSubmit={props.onSave}>
-      <h2>Outputs</h2>
+      <h2>Outputs {modelInputsContext.testVal} </h2>
       <table>
         <thead>
           <tr>
