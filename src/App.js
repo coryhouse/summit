@@ -30,13 +30,12 @@ class App extends React.Component {
   };
 
   handleSaveModelInput = modelInput => {
-    // Since setting state based on previous state, using callback form
-    this.setState(state => {
-      const modelInputs = [...state.modelInputs, modelInput];
-      save(modelInput).then(response => {
-        this.props.history.push("/model-outputs");
-      });
-      return { modelInputs };
+    save(modelInput).then(savedModelInput => {
+      // Since updating state using previous state, using functional setState
+      this.setState(
+        state => ({ modelInputs: [...state.modelInputs, savedModelInput] }),
+        () => this.props.history.push("/model-outputs")
+      );
     });
   };
 
