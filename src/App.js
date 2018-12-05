@@ -29,14 +29,13 @@ class App extends React.Component {
     });
   };
 
-  handleSaveModelInput = modelInput => {
-    save(modelInput).then(savedModelInput => {
-      // Since updating state using previous state, using functional setState
-      this.setState(
-        state => ({ modelInputs: [...state.modelInputs, savedModelInput] }),
-        () => this.props.history.push("/model-outputs")
-      );
-    });
+  handleSaveModelInput = async modelInput => {
+    const savedModelInput = await save(modelInput);
+    // Since updating state using previous state, using functional setState
+    this.setState(
+      state => ({ modelInputs: [...state.modelInputs, savedModelInput] }),
+      () => this.props.history.push("/model-outputs")
+    );
   };
 
   // Create a Header component with a blue background that says "Summit"
