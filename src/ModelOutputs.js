@@ -1,5 +1,9 @@
 import React from "react";
 
+// 0. Make this a functional component
+// 1. Display fields as form inputs
+// 2. Add a save button to each row
+// 3. Save when you click save
 class ModelOutputs extends React.Component {
   render() {
     return (

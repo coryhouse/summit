@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from "react";
+import React, { useReducer, useEffect } from "react";
 import Nav from "./Nav";
 import Header from "./Header";
 import Home from "./Home";
@@ -11,29 +11,42 @@ import { withRouter } from "react-router-dom";
 import { getAll, deleteInput } from "./api/modelInputsApi";
 import "./App.css";
 
+const initialState = {
+  modelInputs: []
+};
+
+function reducer(state = initialState, action) {
+  switch (action.type) {
+    case "loadModelInputs":
+      return { modelInputs: action.payload };
+    case "saveModelInput":
+      return { modelInputs: [...state.modelInputs, action.payload] };
+    case "deleteModelInput":
+      return {
+        modelInputs: [...state.modelInputs.filter(i => i.id !== action.payload)]
+      };
+    default:
+      return state;
+  }
+}
+
 function App(props) {
-  const [modelInputs, setModelInputs] = useState([]);
+  const [state, dispatch] = useReducer(reducer, initialState);
 
   useEffect(() => {
     getAll().then(modelInputs => {
-      setModelInputs(modelInputs);
+      dispatch({ type: "loadModelInputs", payload: modelInputs });
     });
   }, []);
 
-  //   componentDidMount() {
-  //     getAll().then(modelInputs => {
-  //       this.setState({ modelInputs });
-  //     });
-  //   }
-
   function handleDelete(id) {
     deleteInput(id);
-    setModelInputs([...modelInputs.filter(i => i.id !== id)]);
+    dispatch({ type: "deleteModelInput", payload: id });
   }
 
   async function handleSaveModelInput(modelInput) {
     const savedModelInput = await save(modelInput);
-    setModelInputs([...modelInputs, savedModelInput]);
+    dispatch({ type: "saveModelInput", payload: savedModelInput });
     props.history.push("/model-outputs");
   }
 
@@ -53,7 +66,10 @@ function App(props) {
           <Route
             path="/model-outputs"
             render={props => (
-              <ModelOutputs modelInputs={modelInputs} onDelete={handleDelete} />
+              <ModelOutputs
+                modelInputs={state.modelInputs}
+                onDelete={handleDelete}
+              />
             )}
           />
           <Route path="*" component={PageNotFound} />
