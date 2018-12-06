@@ -1,0 +1,31 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`renders Summit in header by default 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "#52B6E8",
+      "color": "white",
+    }
+  }
+>
+  <h1>
+    Summit LLC
+  </h1>
+</div>
+`;
+
+exports[`renders the company name passed 1`] = `
+<div
+  style={
+    Object {
+      "backgroundColor": "#52B6E8",
+      "color": "white",
+    }
+  }
+>
+  <h1>
+    Test company
+  </h1>
+</div>
+`;
