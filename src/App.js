@@ -51,7 +51,10 @@ class App extends React.Component {
             <Route
               path="/model-inputs"
               render={props => (
-                <ModelInputs onSave={this.handleSaveModelInput} />
+                <ModelInputs
+                  onSave={this.handleSaveModelInput}
+                  modelInputs={this.state.modelInputs}
+                />
               )}
             />
             <Route
