@@ -8,7 +8,7 @@ class ModelOutputs extends React.Component {
         <table>
           <thead>
             <tr>
-              <th>Name</th>
+              <th>Input Name</th>
               <th>Time</th>
               <th>Status</th>
               <th />

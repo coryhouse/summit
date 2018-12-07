@@ -1,0 +1,88 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`should render a table with 2 rows when passed two rows 1`] = `
+<div>
+  <h2>
+    Outputs
+  </h2>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Input Name
+        </th>
+        <th>
+          Time
+        </th>
+        <th>
+          Status
+        </th>
+        <th />
+      </tr>
+    </thead>
+    <tbody>
+      <tr>
+        <td>
+          name1
+        </td>
+        <td>
+          desc1
+        </td>
+        <td>
+          date1
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+      <tr>
+        <td>
+          name2
+        </td>
+        <td>
+          desc2
+        </td>
+        <td>
+          date2
+        </td>
+        <td>
+          <button
+            onClick={[Function]}
+          >
+            Delete
+          </button>
+        </td>
+      </tr>
+    </tbody>
+  </table>
+</div>
+`;
+
+exports[`should render an empty table when passed an empty array 1`] = `
+<div>
+  <h2>
+    Outputs
+  </h2>
+  <table>
+    <thead>
+      <tr>
+        <th>
+          Input Name
+        </th>
+        <th>
+          Time
+        </th>
+        <th>
+          Status
+        </th>
+        <th />
+      </tr>
+    </thead>
+    <tbody />
+  </table>
+</div>
+`;
