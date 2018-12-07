@@ -4,7 +4,7 @@ import PropTypes from "prop-types";
 const Header = ({ companyName = "Summit LLC" }) => {
   return (
     <div style={{ color: "white", backgroundColor: "#52B6E8" }}>
-      <h1>{companyName}</h1>
+      <h1 data-testid="companyName">{companyName}</h1>
     </div>
   );
 };
