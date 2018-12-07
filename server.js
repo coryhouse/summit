@@ -1,9 +1,11 @@
 const express = require("express");
+const cors = require("cors");
 
 /* eslint-disable no-console */
 
 const port = 3001;
 const app = express();
+app.use(cors());
 
 app.get("/users", function(req, res) {
   // Hard coding for simplicity. Pretend this hits a real database
